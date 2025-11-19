@@ -57,11 +57,11 @@ This project follows real-world backend development workflows including modular 
 | **PostgreSQL** | Relational database |
 | **JWT** | Authentication tokens |
 | **Swagger / drf-yasg** | API documentation |
-| **Docker** (optional) | Deployment |
+| **Render| Deployment |
 
 ---
 
-## 🗂 Recommended Django Apps
+## 🗂 Django Apps
 
 | App | Responsibility |
 |-----|----------------|
