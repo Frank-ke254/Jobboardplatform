@@ -15,8 +15,33 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from accounts.views import UserViewSet, SkillViewSet
+from companies.views import CompanyViewSet
+from jobs.views import JobViewSet
+from applications.views import ApplicationViewSet
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
+router = DefaultRouter()
+router.register('users', UserViewSet)
+router.register('skills', SkillViewSet)
+router.register('companies', CompanyViewSet)
+router.register('jobs', JobViewSet)
+router.register('applications', ApplicationViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls')),
+    path("docs/", include("documentation.urls")),
+    path('silk/', include('silk.urls', namespace='silk')),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/auth/', include('dj_rest_auth.urls')),  # login/logout
+    path('api/auth/registration/', include('dj_rest_auth.registration.urls')),  # optional registration endpoints
+    path('api/auth/social/', include('allauth.socialaccount.urls')),  # social login
 ]
