@@ -1,3 +1,6 @@
 .env
 venv/
 staticfiles/
+core/
+User.sql
+db.sqlite3/
