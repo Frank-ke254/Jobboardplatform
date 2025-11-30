@@ -63,7 +63,8 @@ class SkillViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         # Each user sees only their own skills
-        return Skill.objects.filter(user=self.request.user)
+        return Skill.objects.filter(users=self.request.user)
 
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        serializer.save(users=[self.request.user])
+
