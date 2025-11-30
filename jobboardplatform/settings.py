@@ -29,7 +29,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ["jobboardplatformapi.onrender.com"]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -135,7 +135,8 @@ WSGI_APPLICATION = 'jobboardplatform.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL')
+        # default=os.environ.get('DATABASE_URL')
+        default=config('DATABASE_URL')
     )
 }
 
